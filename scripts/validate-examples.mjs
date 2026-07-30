@@ -16,7 +16,11 @@ for (const file of examples) {
   const example = JSON.parse(await readFile(file, "utf8"));
   if (!validate(example)) {
     invalid = true;
-    console.error(`${file}: ${ajv.errorsText(validate.errors)}`);
+    for (const error of validate.errors ?? []) {
+      console.error(
+        `${file}: instancePath=${error.instancePath || "/"}: ${error.message}`,
+      );
+    }
   } else {
     console.log(`${file}: valid`);
   }
