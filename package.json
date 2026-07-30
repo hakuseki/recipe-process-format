@@ -1,0 +1,13 @@
+{
+  "name": "recipe-process-format",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-examples.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-cli": "^5.0.0",
+    "glob": "^11.0.0"
+  }
+}
