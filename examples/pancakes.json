@@ -1,0 +1,28 @@
+{
+  "recipe": {
+    "metadata": {
+      "title": "Pancakes"
+    },
+    "graph": {
+      "nodes": [
+        {"id":"flour","type":"Ingredient","name":"Flour"},
+        {"id":"milk","type":"Ingredient","name":"Milk"},
+        {"id":"egg","type":"Ingredient","name":"Egg"},
+        {"id":"butter","type":"Ingredient","name":"Butter"},
+        {"id":"mix","type":"Operation","name":"Mix"},
+        {"id":"batter","type":"IntermediateProduct","name":"Batter"},
+        {"id":"fry","type":"Operation","name":"Fry"},
+        {"id":"pancakes","type":"Product","name":"Pancakes"}
+      ],
+      "edges": [
+        {"from":"flour","to":"mix"},
+        {"from":"milk","to":"mix"},
+        {"from":"egg","to":"mix"},
+        {"from":"mix","to":"batter"},
+        {"from":"batter","to":"fry"},
+        {"from":"butter","to":"fry"},
+        {"from":"fry","to":"pancakes"}
+      ]
+    }
+  }
+}
