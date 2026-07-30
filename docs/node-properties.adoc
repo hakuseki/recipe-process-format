@@ -1,0 +1,55 @@
+= Node Properties
+
+This document defines common and type-specific properties for RPF nodes.
+
+== Common Properties
+
+|===
+|Property |Required |Description
+
+|`id`
+|MUST
+|Unique identifier within the recipe.
+
+|`type`
+|MUST
+|Node type.
+
+|`name`
+|SHOULD
+|Human-readable name.
+
+|`description`
+|MAY
+|Optional explanatory text.
+
+|`metadata`
+|MAY
+|Implementation-specific extension object.
+|===
+
+== Ingredient Properties
+
+* MAY define `quantity`.
+* MAY define `unit`.
+* MAY define `preparation`.
+
+== Operation Properties
+
+* MAY define `duration`.
+* MAY define `temperature`.
+* MAY define `instructions`.
+
+== IntermediateProduct Properties
+
+* MAY define `quantity`.
+* MAY define `unit`.
+
+== Product Properties
+
+* MAY define `quantity`.
+* MAY define `unit`.
+
+== Extensibility
+
+Implementations MAY introduce additional properties. Validators SHOULD ignore unknown properties unless operating in a strict validation mode.
