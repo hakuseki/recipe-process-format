@@ -1,0 +1,23 @@
+= Rendering
+
+== Purpose
+A renderer transforms an RPF recipe graph into a presentation suitable for humans or machines while preserving semantics.
+
+== Requirements
+* A renderer MUST NOT alter the graph structure.
+* A renderer MUST preserve ingredient and operation relationships.
+* A renderer MAY choose any layout appropriate for the target medium.
+* A renderer MAY omit metadata that is irrelevant to the target format.
+
+== Supported Outputs
+Examples include:
+
+* HTML
+* PDF
+* Markdown
+* SVG
+* Plain text
+* Spreadsheet
+
+== Renderer Independence
+Different renderers MAY produce visually different results from the same RPF document. Such differences MUST NOT change the recipe semantics or execution order implied by the graph.
