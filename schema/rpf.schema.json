@@ -4,6 +4,27 @@
   "title": "Recipe Process Format",
   "type": "object",
   "required": ["recipe"],
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["Ingredient", "Operation", "IntermediateProduct", "Product"]},
+        "name": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "edge": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": {"type": "string"},
+        "to": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
   "properties": {
     "recipe": {
       "type": "object",
@@ -14,11 +35,14 @@
           "type": "object",
           "required": ["nodes", "edges"],
           "properties": {
-            "nodes": {"type": "array"},
-            "edges": {"type": "array"}
-          }
+            "nodes": {"type": "array", "items": {"$ref": "#/$defs/node"}},
+            "edges": {"type": "array", "items": {"$ref": "#/$defs/edge"}}
+          },
+          "additionalProperties": false
         }
-      }
+      },
+      "additionalProperties": false
     }
-  }
+  },
+  "additionalProperties": false
 }
