@@ -1,0 +1,33 @@
+= Edge Model
+
+Edges define the flow of materials between nodes. An edge is directed and connects exactly one source node to one target node.
+
+== Required Properties
+
+Every edge MUST contain:
+
+* `from` — identifier of the source node.
+* `to` — identifier of the target node.
+
+== Semantics
+
+An edge represents the transfer of a material or product.
+
+* Ingredient -> Operation denotes that an ingredient is consumed.
+* Operation -> IntermediateProduct denotes that an operation produces an intermediate result.
+* Operation -> Product denotes that an operation produces a final product.
+* IntermediateProduct -> Operation denotes that an intermediate result is consumed by a later operation.
+
+== Multiplicity
+
+* Multiple edges MAY terminate at the same operation.
+* An operation MAY produce multiple outgoing edges.
+* A node MAY participate in multiple edges unless prohibited by the node rules.
+
+== Edge Metadata
+
+Edges MAY include implementation-specific metadata such as labels, ordering information or rendering hints. Such metadata MUST NOT change the semantic meaning of the graph.
+
+== Future Extensions
+
+Future versions MAY introduce explicit edge types or attributes while preserving compatibility with the core edge model.
