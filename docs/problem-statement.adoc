@@ -1,0 +1,5 @@
+= Problem Statement
+
+Most recipes are written as linear prose intended for humans. They mix ingredients, timing, equipment and presentation into a single document, making them difficult to transform into alternative layouts or machine-readable workflows.
+
+RPF addresses this by defining an information model where ingredients, operations, tools and intermediate products are represented explicitly and independently of rendering.
