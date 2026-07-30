@@ -1,0 +1,13 @@
+= Terminology
+
+== Recipe Graph
+A directed acyclic graph (DAG) describing the flow of ingredients, intermediate products and operations.
+
+== Node
+A graph element representing an ingredient, operation, tool, artifact or intermediate product.
+
+== Edge
+A directed relationship describing flow between two nodes.
+
+== Renderer
+Software that transforms an RPF document into a human- or machine-consumable representation without changing its semantics.
