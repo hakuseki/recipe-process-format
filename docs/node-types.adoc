@@ -1,0 +1,36 @@
+= Node Types
+
+== Purpose
+This document defines the standard node types used in the Recipe Process Format (RPF).
+
+== Common Requirements
+
+Every node MUST contain a unique `id` and a `type`.
+A node MAY contain a human-readable `name`.
+
+== Ingredient
+Represents an input ingredient.
+
+* MUST represent material available before recipe execution.
+* MUST NOT have incoming edges.
+
+== Operation
+Represents a transformation.
+
+* MUST consume one or more input nodes.
+* SHOULD produce one or more output nodes.
+
+== IntermediateProduct
+Represents the result of an operation that is consumed later.
+
+* MUST have at least one incoming edge.
+* SHOULD have one or more outgoing edges.
+
+== Product
+Represents the final recipe output.
+
+* MUST have at least one incoming edge.
+* SHOULD NOT have outgoing edges.
+
+== Future Node Types
+Future versions MAY define additional node types such as `Equipment`, `Timer`, `Condition`, or `Annotation` without changing the core graph model.
