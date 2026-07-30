@@ -1,0 +1,21 @@
+= Validation Rules
+
+This document defines the minimum validation requirements for RPF documents.
+
+== Structural Validation
+* A document MUST contain exactly one Recipe.
+* A Recipe MUST contain exactly one Graph.
+* Every Node identifier MUST be unique.
+* Every Edge MUST reference existing Nodes.
+
+== Graph Validation
+* The Graph MUST be a directed acyclic graph (DAG).
+* Every Node MUST be reachable from at least one root node.
+* Cycles MUST cause validation failure.
+* Self-referencing Edges MUST NOT be permitted.
+
+== Semantic Validation
+* Every Operation SHOULD have at least one input.
+* Every Operation SHOULD produce at least one output.
+* Every IntermediateProduct SHOULD be produced by exactly one Operation.
+* Unconnected nodes SHOULD generate a validation warning.
