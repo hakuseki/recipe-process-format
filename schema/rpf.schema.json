@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hakuseki.github.io/recipe-process-format/schema/rpf.schema.json",
+  "title": "Recipe Process Format",
+  "type": "object",
+  "required": ["recipe"],
+  "properties": {
+    "recipe": {
+      "type": "object",
+      "required": ["metadata", "graph"],
+      "properties": {
+        "metadata": {"type": "object"},
+        "graph": {
+          "type": "object",
+          "required": ["nodes", "edges"],
+          "properties": {
+            "nodes": {"type": "array"},
+            "edges": {"type": "array"}
+          }
+        }
+      }
+    }
+  }
+}
