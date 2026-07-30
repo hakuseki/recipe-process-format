@@ -1,0 +1,25 @@
+= RPF Specification
+
+This document is normative.
+
+== Document Structure
+An RPF document MUST contain exactly one Recipe object.
+
+A Recipe MUST contain:
+
+* Metadata
+* Graph
+
+== Metadata
+Metadata SHOULD contain a title.
+Metadata MAY contain author, language, description, tags and version information.
+
+== Graph Constraints
+A Graph MUST be a directed acyclic graph (DAG).
+Every Node MUST be reachable from at least one root node.
+Every Edge MUST reference existing Nodes.
+
+== Renderer Requirements
+A renderer MUST preserve the semantic meaning of an RPF document.
+A renderer MUST NOT modify node relationships.
+A renderer MAY choose any visual representation appropriate for its target format.
