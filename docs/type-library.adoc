@@ -1,0 +1,57 @@
+= Type Library
+
+This document defines reusable semantic types used throughout the Recipe Process Format (RPF).
+
+== Design Principles
+
+* Types SHOULD be reused instead of redefining equivalent structures.
+* Types MUST have identical semantics wherever they are used.
+
+== Identifier
+
+Represents a unique identifier within a recipe.
+
+* JSON type: `string`
+* MUST be unique within its scope.
+
+== Quantity
+
+Represents a numeric amount.
+
+* JSON type: `number`
+* SHOULD be non-negative.
+
+== Unit
+
+Represents the measurement unit associated with a quantity.
+
+* JSON type: `string`
+* SHOULD use standardized names or abbreviations.
+
+== Duration
+
+Represents elapsed time.
+
+* JSON type: `string`
+* SHOULD use ISO 8601 durations (for example `PT15M`).
+
+== Temperature
+
+Represents a temperature value.
+
+* JSON type: `number`
+* Unit interpretation SHOULD be documented by the implementation.
+
+== LocalizedString
+
+Represents human-readable text.
+
+* JSON type: `string` or language-keyed object.
+* Future versions MAY define multilingual structures.
+
+== Metadata
+
+Represents implementation-specific extension data.
+
+* JSON type: `object`
+* Consumers SHOULD ignore unknown members unless operating in strict mode.
