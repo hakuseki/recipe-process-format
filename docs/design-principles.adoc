@@ -1,0 +1,9 @@
+= Design Principles
+
+* Semantics before presentation.
+* Renderer independence.
+* Explicit process flow.
+* Deterministic interpretation of recipe graphs.
+* Extensible without breaking existing documents.
+* Human-readable and machine-readable representations are equally important.
+* The specification defines behavior; renderers define appearance.
