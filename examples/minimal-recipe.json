@@ -1,0 +1,30 @@
+{
+  "recipe": {
+    "metadata": {
+      "title": "Boiled Egg"
+    },
+    "graph": {
+      "nodes": [
+        {
+          "id": "ingredient-egg",
+          "type": "Ingredient",
+          "name": "Egg"
+        },
+        {
+          "id": "op-boil",
+          "type": "Operation",
+          "name": "Boil"
+        },
+        {
+          "id": "product-boiled-egg",
+          "type": "IntermediateProduct",
+          "name": "Boiled Egg"
+        }
+      ],
+      "edges": [
+        {"from": "ingredient-egg", "to": "op-boil"},
+        {"from": "op-boil", "to": "product-boiled-egg"}
+      ]
+    }
+  }
+}
