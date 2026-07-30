@@ -1,0 +1,3 @@
+= Recipe Process Format (RPF)
+
+Recipe Process Format (RPF) is an open specification for representing cooking recipes as process graphs rather than linear text.
