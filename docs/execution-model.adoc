@@ -1,0 +1,33 @@
+= Execution Model
+
+This document defines how a Recipe Process Format (RPF) graph is executed.
+
+== General Principles
+
+* An RPF graph MUST be interpreted as a Directed Acyclic Graph (DAG).
+* Execution order MUST be derived from graph topology and MUST NOT depend on the physical ordering of nodes or edges in the document.
+
+== Readiness
+
+An operation becomes executable when all of its input nodes have been produced or are available.
+
+== Execution
+
+* Ingredient nodes are considered available at the start of execution.
+* Operation nodes consume available inputs and produce one or more outputs.
+* Intermediate products become available immediately after the producing operation completes.
+* Product nodes represent terminal outputs.
+
+== Parallelism
+
+Independent branches of the graph MAY execute in parallel when no dependency exists between them.
+A conforming implementation MUST produce the same semantic result regardless of whether execution is sequential or parallel.
+
+== Topological Ordering
+
+Implementations SHOULD perform a topological sort before execution.
+If no topological ordering exists, the graph MUST be rejected as invalid.
+
+== Rendering
+
+Renderers MAY choose any visual layout. Rendering order MUST NOT influence execution semantics.
