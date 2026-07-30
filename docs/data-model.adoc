@@ -1,0 +1,27 @@
+= Data Model
+
+== Overview
+An RPF document represents a recipe as a directed acyclic graph (DAG).
+
+== Recipe
+A Recipe is the root object and MUST contain exactly one Graph.
+
+== Graph
+A Graph MUST contain one or more Nodes and zero or more Edges.
+
+== Node
+Every Node MUST have a unique identifier within the Recipe.
+Each Node MUST declare a type.
+
+Initial node types:
+
+* Ingredient
+* Operation
+* IntermediateProduct
+* Tool
+* Artifact
+
+== Edge
+An Edge connects exactly one source Node to one target Node.
+Both referenced Nodes MUST exist in the Graph.
+Edges MUST NOT create cycles.
