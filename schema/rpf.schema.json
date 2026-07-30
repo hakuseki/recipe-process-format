@@ -1,17 +1,190 @@
 {
- "$schema":"https://json-schema.org/draft/2020-12/schema",
- "$id":"https://hakuseki.github.io/recipe-process-format/schema/rpf.schema.json",
- "title":"Recipe Process Format",
- "type":"object",
- "$defs":{
-  "baseNode":{"type":"object","required":["id","type"],"properties":{"id":{"type":"string"},"name":{"type":"string"},"description":{"type":"string"},"metadata":{"type":"object"}},"additionalProperties":true},
-  "ingredient":{"allOf":[{"$ref":"#/$defs/baseNode"},{"properties":{"type":{"const":"Ingredient"},"quantity":{"type":"number"},"unit":{"type":"string"},"preparation":{"type":"string"}}}]},
-  "operation":{"allOf":[{"$ref":"#/$defs/baseNode"},{"properties":{"type":{"const":"Operation"},"duration":{"type":"string"},"temperature":{"type":["number","string"]},"instructions":{"type":"string"}}}]},
-  "intermediate":{"allOf":[{"$ref":"#/$defs/baseNode"},{"properties":{"type":{"const":"IntermediateProduct"},"quantity":{"type":"number"},"unit":{"type":"string"}}}]},
-  "product":{"allOf":[{"$ref":"#/$defs/baseNode"},{"properties":{"type":{"const":"Product"},"quantity":{"type":"number"},"unit":{"type":"string"}}}]},
-  "node":{"oneOf":[{"$ref":"#/$defs/ingredient"},{"$ref":"#/$defs/operation"},{"$ref":"#/$defs/intermediate"},{"$ref":"#/$defs/product"}]},
-  "edge":{"type":"object","required":["from","to"],"properties":{"from":{"type":"string"},"to":{"type":"string"}},"additionalProperties":false}
- },
- "required":["recipe"],
- "properties":{"recipe":{"type":"object","required":["metadata","graph"],"properties":{"metadata":{"type":"object"},"graph":{"type":"object","required":["nodes","edges"],"properties":{"nodes":{"type":"array","items":{"$ref":"#/$defs/node"}},"edges":{"type":"array","items":{"$ref":"#/$defs/edge"}}}}}}}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hakuseki.github.io/recipe-process-format/schema/rpf.schema.json",
+  "title": "Recipe Process Format",
+  "type": "object",
+  "$defs": {
+    "baseNode": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "quantityUnit": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        }
+      }
+    },
+    "ingredientFields": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Ingredient"
+        },
+        "preparation": {
+          "type": "string"
+        }
+      }
+    },
+    "operationFields": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Operation"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "temperature": {
+          "type": ["number", "string"]
+        },
+        "instructions": {
+          "type": "string"
+        }
+      }
+    },
+    "intermediateFields": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "IntermediateProduct"
+        }
+      }
+    },
+    "productFields": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Product"
+        }
+      }
+    },
+    "ingredient": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/baseNode"
+        },
+        {
+          "$ref": "#/$defs/quantityUnit"
+        },
+        {
+          "$ref": "#/$defs/ingredientFields"
+        }
+      ]
+    },
+    "operation": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/baseNode"
+        },
+        {
+          "$ref": "#/$defs/operationFields"
+        }
+      ]
+    },
+    "intermediate": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/baseNode"
+        },
+        {
+          "$ref": "#/$defs/quantityUnit"
+        },
+        {
+          "$ref": "#/$defs/intermediateFields"
+        }
+      ]
+    },
+    "product": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/baseNode"
+        },
+        {
+          "$ref": "#/$defs/quantityUnit"
+        },
+        {
+          "$ref": "#/$defs/productFields"
+        }
+      ]
+    },
+    "node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ingredient"
+        },
+        {
+          "$ref": "#/$defs/operation"
+        },
+        {
+          "$ref": "#/$defs/intermediate"
+        },
+        {
+          "$ref": "#/$defs/product"
+        }
+      ]
+    },
+    "edge": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["recipe"],
+  "properties": {
+    "recipe": {
+      "type": "object",
+      "required": ["metadata", "graph"],
+      "properties": {
+        "metadata": {
+          "type": "object"
+        },
+        "graph": {
+          "type": "object",
+          "required": ["nodes", "edges"],
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node"
+              }
+            },
+            "edges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/edge"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
