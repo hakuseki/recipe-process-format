@@ -1,0 +1,19 @@
+name: Validate specification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: npx ajv compile --spec=draft2020 -s schema/rpf.schema.json
+      - run: npm run validate
