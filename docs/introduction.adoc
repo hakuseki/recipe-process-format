@@ -1,0 +1,3 @@
+= Introduction
+
+Recipe Process Format (RPF) defines a vendor-neutral information model for cooking recipes. The specification separates semantic meaning from presentation, allowing the same recipe to be rendered in multiple formats without changing its underlying structure.
