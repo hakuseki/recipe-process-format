@@ -1,0 +1,38 @@
+= Graph Rules
+
+This document defines semantic graph rules that complement the JSON Schema.
+
+== Node Identity
+
+* Every node id MUST be unique within a recipe.
+* Every edge endpoint MUST reference an existing node.
+
+== Graph Topology
+
+* The graph MUST be a Directed Acyclic Graph (DAG).
+* Cycles MUST NOT exist.
+* Isolated nodes SHOULD NOT exist.
+
+== Ingredient Rules
+
+* An `Ingredient` MUST NOT have incoming edges.
+* An `Ingredient` SHOULD have one or more outgoing edges.
+
+== Operation Rules
+
+* An `Operation` MUST have one or more incoming edges.
+* An `Operation` SHOULD have one or more outgoing edges.
+
+== Intermediate Product Rules
+
+* An `IntermediateProduct` MUST have one or more incoming edges.
+* An `IntermediateProduct` SHOULD have one or more outgoing edges.
+
+== Product Rules
+
+* A `Product` MUST have one or more incoming edges.
+* A `Product` SHOULD NOT have outgoing edges.
+
+== Validation
+
+These rules are semantic constraints. A conforming RPF validator MUST evaluate them in addition to JSON Schema validation.
