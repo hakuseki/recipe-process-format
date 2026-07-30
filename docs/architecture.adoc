@@ -1,0 +1,12 @@
+= Architecture
+
+RPF is composed of a semantic core and one or more renderers.
+
+== Semantic Core
+The semantic core defines recipes as directed acyclic graphs consisting of nodes and edges.
+
+== Renderers
+Renderers transform the semantic model into formats such as PDF, HTML, Markdown, SVG or spreadsheet representations without modifying the recipe semantics.
+
+== Conformance
+Implementations claiming conformance MUST preserve the semantic meaning of an RPF document regardless of output format.
