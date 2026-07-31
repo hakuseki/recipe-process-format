@@ -15,6 +15,12 @@ The example demonstrates that the RPF Core Model can describe a complete recipe 
 
 `recipe.rpf.yaml` is an experimental design artefact. It is not a proposed serialization format. Its purpose is readability and a faithful representation of the Core Model.
 
+== Material Flow View
+
+The Core Model defines the recipe's semantics. `material-flow.adoc` and `graph.mmd` project those semantics into a Material Flow View for human readers.
+
+The Material Flow View follows ingredients and process states as they change and merge. It does not add meaning, change the recipe, or define an alternative model. Read `material-flow.adoc` for the canonical reader-oriented diagram and renderer guidance; `graph.mmd` is a Mermaid approximation of that view.
+
 == Modelling Challenges
 
 The source recipe gives alternatives for mushrooms and for tahini or peanut butter. These are represented as alternative Ingredient choices, rather than as new conceptual entities. The source also leaves rice and garnish quantities open; the corresponding consumption relationships therefore use `as needed` or `to taste`.
@@ -26,4 +32,5 @@ No additional core concepts appeared necessary. By-products, cooking time, cookw
 == Files
 
 - `recipe.rpf.yaml` is the readable experimental graph.
-- `graph.mmd` is the Mermaid rendering of the same Ingredient-Operation-State graph.
+- `material-flow.adoc` is the canonical state-first Material Flow View and its rendering guidance.
+- `graph.mmd` is a Mermaid approximation of the Material Flow View.
