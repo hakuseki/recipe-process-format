@@ -1,0 +1,101 @@
+= RPF Core Model
+:toc:
+:sectnums:
+
+== Status
+
+This document defines the normative conceptual foundation of the Recipe Process Format (RPF).
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 and RFC 8174 when, and only when, they appear in all capitals.
+
+== Purpose
+
+RPF describes a recipe as a directed acyclic graph (DAG) of material transformations.
+
+This model defines the smallest set of concepts needed to describe how externally introduced materials are transformed into resulting process states. It describes material transformations through process states; it does not describe workflow execution.
+
+== Design Principles
+
+The core model is governed by the following principles:
+
+- Semantics first.
+- Every meaningful material transformation is explicit.
+- States are immutable.
+- The process is a directed acyclic graph.
+- The model is independent of any particular representation or implementation.
+
+== Core Concepts
+
+The core model has three concepts: Ingredient, Operation, and State.
+
+=== Ingredient
+
+An Ingredient is an external resource introduced into a recipe.
+
+An Ingredient SHALL originate outside the recipe and SHALL NOT have a producing Operation. An Ingredient MAY be consumed by one or more Operations.
+
+=== Operation
+
+An Operation is an intentional material transformation.
+
+An Operation SHALL consume one or more Ingredients and/or States. Every Operation SHALL produce exactly one State. An Operation SHALL describe the transformation it performs and MAY define parameters of that transformation.
+
+Operations are the only mechanism by which the process changes.
+
+=== State
+
+A State is the result of an Operation and represents a coherent work product at a particular stage of the process.
+
+A State SHALL be produced by exactly one Operation and SHALL be immutable. A State MAY be consumed by multiple Operations.
+
+== Process Graph
+
+A recipe SHALL be represented as a directed acyclic graph. Its nodes are Ingredients, Operations, and States. Its directed relationships express consumption and production.
+
+[source,text]
+----
+Ingredient --> Operation --> State
+----
+
+An Operation consumes its input Ingredients and/or States and produces its one resulting State.
+
+The graph SHALL be acyclic: no sequence of directed relationships MAY return to a prior node.
+
+A State MAY be reused as an input to more than one Operation.
+
+[source,text]
+----
+                 --> Operation A --> State A
+State ----------<
+                 --> Operation B --> State B
+----
+
+== Process States
+
+Every meaningful process transition SHALL be represented by an Operation and its resulting State.
+
+Passive transformations, including Rest, Cool, Rise, Marinate, Freeze, and Thaw, are ordinary Operations. They have no special processing rules.
+
+== Quantities
+
+Quantities belong to the consumption relationship between an Ingredient or State and an Operation.
+
+A State does not itself define how much of it is consumed by an Operation.
+
+== Invariants
+
+Every valid RPF recipe SHALL satisfy all of the following invariants.
+
+. Every Operation SHALL produce exactly one State.
+. Every State SHALL be produced by exactly one Operation.
+. Ingredients SHALL NOT have producing Operations.
+. States SHALL be immutable.
+. A State MAY be consumed by multiple Operations.
+. Every meaningful process transition SHALL be represented by an Operation.
+. The process graph SHALL be acyclic.
+
+== Out of Scope
+
+The core model does not define concrete representations, rendering, user interfaces, execution engines, or AI-assisted recipe generation.
+
+Those concerns are outside the conceptual foundation defined by this document.
