@@ -1,0 +1,63 @@
+flowchart TD
+  tofu["Ingredient: firm tofu"] --> press(["Operation: press tofu"])
+  press --> pressed[["State: pressed tofu"]]
+  pressed --> cutTofu(["Operation: cut tofu"])
+  cutTofu --> cubed[["State: cubed tofu"]]
+  cubed --> coat(["Operation: coat tofu"])
+  cornstarch["Ingredient: cornstarch"] --> coat
+  coat --> coated[["State: coated tofu"]]
+  coated --> fryTofu(["Operation: fry tofu"])
+  rapeseedOil["Ingredient: rapeseed oil"] --> fryTofu
+  fryTofu --> friedTofu[["State: fried tofu"]]
+
+  broccoli["Ingredient: broccoli"] --> cutBroccoli(["Operation: cut broccoli"])
+  cutBroccoli --> broccoliFlorets[["State: broccoli florets"]]
+  mushrooms["Ingredient: mushrooms"] --> sliceMushrooms(["Operation: slice mushrooms"])
+  sliceMushrooms --> slicedMushrooms[["State: sliced mushrooms"]]
+  onion["Ingredient: yellow onion"] --> sliceOnion(["Operation: slice onion"])
+  sliceOnion --> slicedOnion[["State: sliced onion"]]
+  garlic["Ingredient: garlic"] --> chopGarlic(["Operation: chop garlic"])
+  chopGarlic --> choppedGarlic[["State: chopped garlic"]]
+  ginger["Ingredient: fresh ginger"] --> grateGinger(["Operation: grate ginger"])
+  grateGinger --> gratedGinger[["State: grated ginger"]]
+  slicedOnion --> saute(["Operation: saute aromatics and mushrooms"])
+  slicedMushrooms --> saute
+  choppedGarlic --> saute
+  gratedGinger --> saute
+  saute --> sauteed[["State: sauteed aromatics and mushrooms"]]
+  broccoliFlorets --> fryVegetables(["Operation: fry broccoli with vegetables"])
+  sauteed --> fryVegetables
+  fryVegetables --> friedVegetables[["State: fried vegetables"]]
+
+  cream["Ingredient: cooking cream"] --> mixSauce(["Operation: mix cream, sesame, and miso sauce"])
+  stock["Ingredient: vegetable stock"] --> mixSauce
+  miso["Ingredient: white miso"] --> mixSauce
+  soy["Ingredient: Japanese soy sauce"] --> mixSauce
+  tahini["Ingredient: tahini or peanut butter"] --> mixSauce
+  mirin["Ingredient: mirin"] --> mixSauce
+  sesameOil["Ingredient: sesame oil"] --> mixSauce
+  vinegar["Ingredient: rice vinegar"] --> mixSauce
+  honey["Ingredient: honey"] --> mixSauce
+  cornstarch --> mixSauce
+  coldWater["Ingredient: cold water"] --> mixSauce
+  mixSauce --> mixedSauce[["State: mixed cream, sesame, and miso sauce"]]
+  friedVegetables --> combineSauce(["Operation: combine vegetables and sauce"])
+  mixedSauce --> combineSauce
+  combineSauce --> vegetablesInSauce[["State: vegetables in sauce"]]
+  vegetablesInSauce --> simmerVegetables(["Operation: simmer vegetables in sauce"])
+  simmerVegetables --> simmeredVegetables[["State: simmered vegetables in sauce"]]
+  friedTofu --> simmerTofu(["Operation: simmer tofu in sauce"])
+  simmeredVegetables --> simmerTofu
+  simmerTofu --> tofuBroccoliSauce[["State: tofu and broccoli in sesame and miso sauce"]]
+
+  rice["Ingredient: jasmine rice"] --> cookRice(["Operation: cook jasmine rice"])
+  water["Ingredient: water"] --> cookRice
+  cookRice --> cookedRice[["State: cooked jasmine rice"]]
+  springOnion["Ingredient: spring onion"] --> sliceSpringOnion(["Operation: slice spring onion"])
+  sliceSpringOnion --> slicedSpringOnion[["State: sliced spring onion"]]
+
+  cookedRice --> assemble(["Operation: assemble dish"])
+  tofuBroccoliSauce --> assemble
+  sesameSeeds["Ingredient: toasted sesame seeds"] --> assemble
+  slicedSpringOnion --> assemble
+  assemble --> finished[["State: creamy tofu and broccoli dish"]]
