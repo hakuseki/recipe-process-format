@@ -10,9 +10,9 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 == Purpose
 
-RPF describes a recipe as a directed acyclic graph (DAG) of material transformations.
+RPF describes a recipe as a Directed Acyclic Graph (DAG) of material transformations.
 
-This model defines the smallest set of concepts needed to describe how externally introduced materials are transformed into resulting process states. It describes material transformations through process states; it does not describe workflow execution.
+This model defines the smallest set of concepts needed to describe how externally introduced materials are transformed into resulting process states. It describes material transformations through process states, rather than workflow execution.
 
 == Design Principles
 
@@ -44,13 +44,13 @@ Operations are the only mechanism by which the process changes.
 
 === State
 
-A State is the result of an Operation and represents a coherent work product at a particular stage of the process.
+A State is the result of an Operation and represents a coherent material condition at a particular point in the process.
 
-A State SHALL be produced by exactly one Operation and SHALL be immutable. A State MAY be consumed by multiple Operations.
+A State SHALL be produced by exactly one Operation and SHALL be immutable. Its material condition SHALL NOT be modified. A changed material condition SHALL be represented by a distinct State produced by an Operation. A State MAY be consumed by multiple Operations.
 
 == Process Graph
 
-A recipe SHALL be represented as a directed acyclic graph. Its nodes are Ingredients, Operations, and States. Its directed relationships express consumption and production.
+A recipe SHALL be represented as a Directed Acyclic Graph (DAG). Its nodes are Ingredients, Operations, and States. Directed relationships from Ingredients or States to Operations express consumption; directed relationships from Operations to States express production.
 
 [source,text]
 ----
@@ -61,7 +61,7 @@ An Operation consumes its input Ingredients and/or States and produces its one r
 
 The graph SHALL be acyclic: no sequence of directed relationships MAY return to a prior node.
 
-A State MAY be reused as an input to more than one Operation.
+The same immutable State MAY be consumed by more than one Operation.
 
 [source,text]
 ----
@@ -72,15 +72,15 @@ State ----------<
 
 == Process States
 
-Every meaningful process transition SHALL be represented by an Operation and its resulting State.
+Every meaningful process transition SHALL be represented by an Operation and its resulting State. A later material condition SHALL NOT be represented by modifying an existing State.
 
 Passive transformations, including Rest, Cool, Rise, Marinate, Freeze, and Thaw, are ordinary Operations. They have no special processing rules.
 
 == Quantities
 
-Quantities belong to the consumption relationship between an Ingredient or State and an Operation.
+When a quantity is expressed, it SHALL belong to the consumption relationship between an Ingredient or State and an Operation.
 
-A State does not itself define how much of it is consumed by an Operation.
+An Ingredient or State does not itself define how much of it is consumed by an Operation.
 
 == Invariants
 
@@ -90,12 +90,13 @@ Every valid RPF recipe SHALL satisfy all of the following invariants.
 . Every State SHALL be produced by exactly one Operation.
 . Ingredients SHALL NOT have producing Operations.
 . States SHALL be immutable.
+. A changed material condition SHALL be represented by a distinct State produced by an Operation.
 . A State MAY be consumed by multiple Operations.
 . Every meaningful process transition SHALL be represented by an Operation.
 . The process graph SHALL be acyclic.
 
 == Out of Scope
 
-The core model does not define concrete representations, rendering, user interfaces, execution engines, or AI-assisted recipe generation.
+The core model does not define concrete representations, rendering, user interfaces, workflow execution, scheduling, execution engines, or AI-assisted recipe generation.
 
 Those concerns are outside the conceptual foundation defined by this document.
