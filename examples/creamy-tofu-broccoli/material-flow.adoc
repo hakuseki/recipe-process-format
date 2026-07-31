@@ -1,0 +1,82 @@
+= Material Flow View
+
+== Purpose
+
+This view presents the Creamy Tofu and Broccoli recipe as material flow for human readers. It follows ingredients and resulting process states through each transformation, then makes their merges explicit.
+
+The view is derived from the RPF Core Model. Each material label is an Ingredient or State from the recipe, and each transformation label corresponds to an Operation. The view adds no concepts and does not alter the semantics of the underlying recipe.
+
+== Complete Material Flow
+
+[source,text]
+----
+TOFU FLOW                         VEGETABLE FLOW
+
+Firm tofu                         Yellow onion ─ Slice ─┐
+   │ Press                         Mushrooms ─── Slice ─┤
+Pressed tofu                      Garlic ─────── Chop ──┤ Saute
+   │ Cut                           Ginger ─────── Grate ─┘
+Cubed tofu                                           │
+   │ Coat + cornstarch                       Sauteed aromatics
+Coated tofu                                  and mushrooms
+   │ Fry + rapeseed oil                                │
+Fried tofu                                           ┌─┘
+                                                     │ Fry together
+Broccoli ─ Cut ─ Broccoli florets ───────────────────┘
+                                                     │
+                                              Fried vegetables
+
+SAUCE FLOW
+
+Cooking cream ────────┐     White miso ────────────┐
+Vegetable stock ──────┤     Japanese soy sauce ────┤
+Tahini or peanut butter ──── Mirin ─────────────────┤
+Sesame oil ───────────┤     Rice vinegar ──────────┤ Mix
+Honey ────────────────┤     Cornstarch + cold water ┤
+                       └─────────────────────────────┘
+                                      │
+                       Mixed cream, sesame, and miso sauce
+
+Fried vegetables ────────────────────────────────┐
+Mixed cream, sesame, and miso sauce ──────────────┤ Combine
+                                                   │
+                                            Vegetables in sauce
+                                                   │ Simmer
+                                            Simmered vegetables
+                                                   │
+Fried tofu ───────────────────────────────────────┤ Simmer together
+                                                   │
+                             Tofu and broccoli in sesame and miso sauce
+
+RICE AND GARNISH FLOW
+
+Jasmine rice ─ Cook ─ Cooked jasmine rice ────────────┐
+Toasted sesame seeds ─────────────────────────────────┤ Assemble
+Spring onion ─ Slice ─ Sliced spring onion ───────────┤
+Tofu and broccoli in sesame and miso sauce ───────────┘
+                                                        │
+                                      Creamy tofu and broccoli dish
+----
+
+== Relationship to the Semantic Graph
+
+The semantic graph is the source of truth: it precisely records which Ingredients and States are consumed by each Operation and which State each Operation produces.
+
+The Material Flow View is a projection of that graph. It suppresses identifiers, data fields, and relationship notation in favour of readable material names, transformation labels, vertical state progression, and visible merge points. It does not imply a schedule, a required order of independent work, or a workflow engine.
+
+== Renderer Guidance
+
+A renderer SHOULD present the view as separate vertical flows for independently prepared materials. For each flow it SHOULD:
+
+- show the Ingredient or current State as the primary visual object;
+- place the transformation name on the transition to the next State;
+- make every multi-input transformation a visible merge; and
+- show the State resulting from that merge before it is used again.
+
+The presentation MUST remain a faithful projection of the semantic graph. In particular, it MUST NOT merge distinct States, invent material transformations, or imply workflow dependencies that are absent from the Core Model.
+
+== Mermaid Approximation and Recommended Rendering
+
+`graph.mmd` follows the same material-flow vocabulary, but Mermaid uses automatic layout. It cannot reliably preserve vertical lanes, align merge junctions, or ensure that a complex diagram reads in the intended order.
+
+For a production renderer, an SVG or HTML/CSS-grid layout is recommended. It can assign each independent material flow a fixed lane, reserve merge columns, and render operation labels directly on transitions. The ASCII view above is the canonical reader-oriented representation for this example; Mermaid is retained as a portable approximation.
