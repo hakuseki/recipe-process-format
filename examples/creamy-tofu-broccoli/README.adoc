@@ -1,0 +1,29 @@
+= Creamy Tofu and Broccoli in Sesame and Miso Sauce
+
+This example models the complete four-serving recipe provided in `Kramig_tofu_och_broccoli_i_sesam_och_misosas_A4.pdf`. It was chosen because tofu, vegetables, sauce, rice, and garnish follow independent preparation paths before they converge in the finished dish.
+
+== What This Example Validates
+
+The example demonstrates that the RPF Core Model can describe a complete recipe using only Ingredients, Operations, and States.
+
+- Every meaningful transformation is represented by an Operation.
+- Every Operation produces one immutable State.
+- Each State has one producing Operation.
+- The independent tofu, vegetable, sauce, rice, and garnish paths form a Directed Acyclic Graph.
+- Quantities occur only on consumption entries, never on a State.
+- No workflow, scheduling, equipment, or execution concepts are required.
+
+`recipe.rpf.yaml` is an experimental design artefact. It is not a proposed serialization format. Its purpose is readability and a faithful representation of the Core Model.
+
+== Modelling Challenges
+
+The source recipe gives alternatives for mushrooms and for tahini or peanut butter. These are represented as alternative Ingredient choices, rather than as new conceptual entities. The source also leaves rice and garnish quantities open; the corresponding consumption relationships therefore use `as needed` or `to taste`.
+
+The recipe directs the cook to set fried tofu aside, then add it back to the simmered sauce. This is naturally represented as an immutable fried-tofu State consumed later by the final simmering Operation. The recipe does not require a State to be consumed by more than one Operation, but the Core Model permits that when a recipe needs it.
+
+No additional core concepts appeared necessary. By-products, cooking time, cookware, heat source, and serving order are useful information, but they are not necessary to express the recipe's material transformations and are intentionally not modelled.
+
+== Files
+
+- `recipe.rpf.yaml` is the readable experimental graph.
+- `graph.mmd` is the Mermaid rendering of the same Ingredient-Operation-State graph.

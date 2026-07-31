@@ -1,0 +1,274 @@
+# Experimental design artefact; not a final RPF serialization format.
+
+ingredients:
+  - id: firm-tofu
+    name: Firm tofu
+  - id: cornstarch
+    name: Cornstarch
+  - id: rapeseed-oil
+    name: Rapeseed oil
+  - id: broccoli
+    name: Broccoli
+  - id: mushrooms
+    name: Shiitake or button mushrooms
+  - id: yellow-onion
+    name: Yellow onion
+  - id: garlic
+    name: Garlic
+  - id: fresh-ginger
+    name: Fresh ginger
+  - id: cooking-cream
+    name: Cooking cream
+  - id: vegetable-stock
+    name: Vegetable stock
+  - id: white-miso
+    name: White miso
+  - id: japanese-soy-sauce
+    name: Japanese soy sauce
+  - id: tahini-or-peanut-butter
+    name: Tahini or peanut butter
+  - id: mirin
+    name: Mirin
+  - id: sesame-oil
+    name: Sesame oil
+  - id: rice-vinegar
+    name: Rice vinegar
+  - id: honey
+    name: Honey
+  - id: cold-water
+    name: Cold water
+  - id: jasmine-rice
+    name: Jasmine rice
+  - id: water
+    name: Water
+  - id: sesame-seeds
+    name: Toasted sesame seeds
+  - id: spring-onion
+    name: Spring onion
+
+operations:
+  - id: press-tofu
+    name: Press tofu
+    consumes:
+      - input: firm-tofu
+        quantity: { amount: 400, unit: g }
+    produces: pressed-tofu
+
+  - id: cut-tofu
+    name: Cut tofu into cubes
+    consumes:
+      - input: pressed-tofu
+        quantity: { amount: 1, unit: batch }
+    produces: cubed-tofu
+
+  - id: coat-tofu
+    name: Coat tofu with cornstarch
+    consumes:
+      - input: cubed-tofu
+        quantity: { amount: 1, unit: batch }
+      - input: cornstarch
+        quantity: { amount: 1, unit: tablespoon }
+    produces: coated-tofu
+
+  - id: fry-tofu
+    name: Fry tofu
+    consumes:
+      - input: coated-tofu
+        quantity: { amount: 1, unit: batch }
+      - input: rapeseed-oil
+        quantity: { amount: 1, unit: tablespoon }
+    produces: fried-tofu
+
+  - id: cut-broccoli
+    name: Cut broccoli into florets
+    consumes:
+      - input: broccoli
+        quantity: { amount: 1, unit: large head }
+    produces: broccoli-florets
+
+  - id: slice-mushrooms
+    name: Slice mushrooms
+    consumes:
+      - input: mushrooms
+        quantity: { amount: 250, unit: g }
+    produces: sliced-mushrooms
+
+  - id: slice-onion
+    name: Slice onion
+    consumes:
+      - input: yellow-onion
+        quantity: { amount: 1, unit: onion }
+    produces: sliced-onion
+
+  - id: chop-garlic
+    name: Chop garlic
+    consumes:
+      - input: garlic
+        quantity: { amount: 3, unit: cloves }
+    produces: chopped-garlic
+
+  - id: grate-ginger
+    name: Grate ginger
+    consumes:
+      - input: fresh-ginger
+        quantity: { amount: "2-3", unit: cm }
+    produces: grated-ginger
+
+  - id: saute-aromatics-and-mushrooms
+    name: Saute onion, mushrooms, garlic, and ginger
+    consumes:
+      - input: sliced-onion
+        quantity: { amount: 1, unit: batch }
+      - input: sliced-mushrooms
+        quantity: { amount: 1, unit: batch }
+      - input: chopped-garlic
+        quantity: { amount: 1, unit: batch }
+      - input: grated-ginger
+        quantity: { amount: 1, unit: batch }
+    produces: sauteed-aromatics-and-mushrooms
+
+  - id: fry-broccoli
+    name: Fry broccoli with aromatics and mushrooms
+    consumes:
+      - input: broccoli-florets
+        quantity: { amount: 1, unit: batch }
+      - input: sauteed-aromatics-and-mushrooms
+        quantity: { amount: 1, unit: batch }
+    produces: fried-vegetables
+
+  - id: mix-sauce
+    name: Mix cream, sesame, and miso sauce
+    consumes:
+      - input: cooking-cream
+        quantity: { amount: 200, unit: ml }
+      - input: vegetable-stock
+        quantity: { amount: 200, unit: ml }
+      - input: white-miso
+        quantity: { amount: 2, unit: tablespoons }
+      - input: japanese-soy-sauce
+        quantity: { amount: 2, unit: tablespoons }
+      - input: tahini-or-peanut-butter
+        quantity: { amount: 1, unit: tablespoon }
+      - input: mirin
+        quantity: { amount: 1, unit: tablespoon }
+      - input: sesame-oil
+        quantity: { amount: 1, unit: teaspoon }
+      - input: rice-vinegar
+        quantity: { amount: 1, unit: teaspoon }
+      - input: honey
+        quantity: { amount: 1, unit: teaspoon }
+      - input: cornstarch
+        quantity: { amount: 2, unit: teaspoons }
+      - input: cold-water
+        quantity: { amount: "as needed", unit: "" }
+    produces: mixed-cream-sesame-miso-sauce
+
+  - id: combine-vegetables-and-sauce
+    name: Combine vegetables and sauce
+    consumes:
+      - input: fried-vegetables
+        quantity: { amount: 1, unit: batch }
+      - input: mixed-cream-sesame-miso-sauce
+        quantity: { amount: 1, unit: batch }
+    produces: vegetables-in-sauce
+
+  - id: simmer-vegetables-in-sauce
+    name: Simmer vegetables in sauce
+    consumes:
+      - input: vegetables-in-sauce
+        quantity: { amount: 1, unit: batch }
+    produces: simmered-vegetables-in-sauce
+
+  - id: simmer-tofu-in-sauce
+    name: Simmer tofu in sauce
+    consumes:
+      - input: fried-tofu
+        quantity: { amount: 1, unit: batch }
+      - input: simmered-vegetables-in-sauce
+        quantity: { amount: 1, unit: batch }
+    produces: tofu-and-broccoli-in-sesame-miso-sauce
+
+  - id: cook-rice
+    name: Cook jasmine rice
+    consumes:
+      - input: jasmine-rice
+        quantity: { amount: "as needed", unit: "" }
+      - input: water
+        quantity: { amount: "as needed", unit: "" }
+    produces: cooked-jasmine-rice
+
+  - id: slice-spring-onion
+    name: Slice spring onion
+    consumes:
+      - input: spring-onion
+        quantity: { amount: "to taste", unit: "" }
+    produces: sliced-spring-onion
+
+  - id: assemble-dish
+    name: Assemble creamy tofu and broccoli dish
+    consumes:
+      - input: cooked-jasmine-rice
+        quantity: { amount: 1, unit: batch }
+      - input: tofu-and-broccoli-in-sesame-miso-sauce
+        quantity: { amount: 1, unit: batch }
+      - input: sesame-seeds
+        quantity: { amount: "to taste", unit: "" }
+      - input: sliced-spring-onion
+        quantity: { amount: 1, unit: batch }
+    produces: creamy-tofu-and-broccoli-dish
+
+states:
+  - id: pressed-tofu
+    name: Pressed tofu
+    produced-by: press-tofu
+  - id: cubed-tofu
+    name: Cubed tofu
+    produced-by: cut-tofu
+  - id: coated-tofu
+    name: Coated tofu
+    produced-by: coat-tofu
+  - id: fried-tofu
+    name: Fried tofu
+    produced-by: fry-tofu
+  - id: broccoli-florets
+    name: Broccoli florets
+    produced-by: cut-broccoli
+  - id: sliced-mushrooms
+    name: Sliced mushrooms
+    produced-by: slice-mushrooms
+  - id: sliced-onion
+    name: Sliced onion
+    produced-by: slice-onion
+  - id: chopped-garlic
+    name: Chopped garlic
+    produced-by: chop-garlic
+  - id: grated-ginger
+    name: Grated ginger
+    produced-by: grate-ginger
+  - id: sauteed-aromatics-and-mushrooms
+    name: Sauteed aromatics and mushrooms
+    produced-by: saute-aromatics-and-mushrooms
+  - id: fried-vegetables
+    name: Fried broccoli, aromatics, and mushrooms
+    produced-by: fry-broccoli
+  - id: mixed-cream-sesame-miso-sauce
+    name: Mixed cream, sesame, and miso sauce
+    produced-by: mix-sauce
+  - id: vegetables-in-sauce
+    name: Vegetables in sauce
+    produced-by: combine-vegetables-and-sauce
+  - id: simmered-vegetables-in-sauce
+    name: Simmered vegetables in sauce
+    produced-by: simmer-vegetables-in-sauce
+  - id: tofu-and-broccoli-in-sesame-miso-sauce
+    name: Tofu and broccoli in sesame and miso sauce
+    produced-by: simmer-tofu-in-sauce
+  - id: cooked-jasmine-rice
+    name: Cooked jasmine rice
+    produced-by: cook-rice
+  - id: sliced-spring-onion
+    name: Sliced spring onion
+    produced-by: slice-spring-onion
+  - id: creamy-tofu-and-broccoli-dish
+    name: Creamy tofu and broccoli in sesame and miso sauce
+    produced-by: assemble-dish
